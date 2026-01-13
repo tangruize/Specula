@@ -367,6 +367,6 @@ Symmetry == Permutations(Server) \union Permutations(Value)
 
 \* View used for state space reduction.
 \* It excludes 'constraintCounters' so that states differing only in counters are considered identical.
-ModelView == << vars >>
+ModelView == << view_vars >>
 
 =============================================================================
