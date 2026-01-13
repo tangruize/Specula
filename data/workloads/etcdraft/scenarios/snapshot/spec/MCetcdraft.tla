@@ -10,6 +10,9 @@ EXTENDS etcdraft
 \* CONSTRAINT CONSTANTS
 \* ============================================================================
 
+\* Model value for client requests
+CONSTANT Value
+
 \* Config change limits
 CONSTANT ReconfigurationLimit
 ASSUME ReconfigurationLimit \in Nat
@@ -263,8 +266,8 @@ MCNextAsync ==
        /\ UNCHANGED faultVars
     \/ /\ \E i \in Server : etcd!BecomeLeader(i)
        /\ UNCHANGED faultVars
-    \/ \E i \in Server: MCClientRequest(i, 0)
-    \* \/ \E i \in Server: MCClientRequestAndSend(i, 0)
+    \/ \E i \in Server: \E v \in Value: MCClientRequest(i, v)
+    \* \/ \E i \in Server: \E v \in Value: MCClientRequestAndSend(i, v)
     \/ /\ \E i \in Server : etcd!AdvanceCommitIndex(i)
        /\ UNCHANGED faultVars
     \* NOTE: Entries must be sent starting from nextIndex (per raft.go:638)
@@ -360,7 +363,7 @@ mc_etcdSpec ==
 
 \* Symmetry set over possible servers. May dangerous and is only enabled
 \* via the Symmetry option in cfg file.
-Symmetry == Permutations(Server)
+Symmetry == Permutations(Server) \union Permutations(Value)
 
 \* View used for state space reduction.
 \* It excludes 'constraintCounters' so that states differing only in counters are considered identical.
