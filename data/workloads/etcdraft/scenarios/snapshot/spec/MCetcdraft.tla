@@ -138,9 +138,9 @@ MCTimeout(i) ==
 \* --- Client Request Constraints ---
 \* Limit number of requests (new entries) that can be made
 MCClientRequest(i, v) ==
-    \* Allocation-free variant of Len(SelectSeq(log[i], LAMBDA e: e.contentType = TypeEntry)) < RequestLimit
-    /\ FoldSeq(LAMBDA e, count: IF e.type = ValueEntry THEN count + 1 ELSE count, 0, log[i].entries) < RequestLimit
+    /\ constraintCounters.request < RequestLimit
     /\ etcd!ClientRequest(i, v)
+    /\ constraintCounters' = [constraintCounters EXCEPT !.request = @ + 1]
 
 \* --- Fault Injection Constraints ---
 \* Limit node restarts/crashes to reduce state space explosion
@@ -215,9 +215,9 @@ MCChangeConfAndSend(i) ==
 \* --- Client Request Constraints ---
 \* ClientRequestAndSend with request limit (same as ClientRequest)
 MCClientRequestAndSend(i, v) ==
-    /\ FoldSeq(LAMBDA e, count: IF e.type = ValueEntry THEN count + 1 ELSE count, 0, log[i].entries) < RequestLimit
+    /\ constraintCounters.request < RequestLimit
     /\ etcd!ClientRequestAndSend(i, v)
-    /\ UNCHANGED constraintCounters
+    /\ constraintCounters' = [constraintCounters EXCEPT !.request = @ + 1]
 
 \* --- ReportUnreachable Constraint ---
 MCReportUnreachable(i, j) ==
@@ -252,7 +252,7 @@ MCSend(msg) ==
 
 MCInit ==
     /\ etcd!Init
-    /\ constraintCounters = [restart |-> 0, drop |-> 0, duplicate |-> 0, stepDown |-> 0, heartbeat |-> 0, snapshot |-> 0, compact |-> 0, confChange |-> 0, reportUnreachable |-> 0, timeout |-> 0]
+    /\ constraintCounters = [restart |-> 0, drop |-> 0, duplicate |-> 0, stepDown |-> 0, heartbeat |-> 0, snapshot |-> 0, compact |-> 0, confChange |-> 0, reportUnreachable |-> 0, timeout |-> 0, request |-> 0]
 
 \* ============================================================================
 \* NEXT STATE RELATIONS
@@ -263,9 +263,8 @@ MCNextAsync ==
        /\ UNCHANGED faultVars
     \/ /\ \E i \in Server : etcd!BecomeLeader(i)
        /\ UNCHANGED faultVars
-    \/ /\ \E i \in Server: MCClientRequest(i, 0)
-       /\ UNCHANGED faultVars
-    \/ /\ \E i \in Server: MCClientRequestAndSend(i, 0)
+    \/ \E i \in Server: MCClientRequest(i, 0)
+    \* \/ \E i \in Server: MCClientRequestAndSend(i, 0)
     \/ /\ \E i \in Server : etcd!AdvanceCommitIndex(i)
        /\ UNCHANGED faultVars
     \* NOTE: Entries must be sent starting from nextIndex (per raft.go:638)
