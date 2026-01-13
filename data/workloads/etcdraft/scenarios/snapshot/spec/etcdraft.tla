@@ -2400,4 +2400,29 @@ NewInvariants ==
     /\ AdditionalMessageInv
     /\ TermAndVoteInv
 
+\* \* ============================================================================
+\* \* Monotonicity Properties
+\* \* ============================================================================
+
+\* \* Each server's commit index is monotonically increasing
+\* \* This is weaker form of CommittedLogAppendOnlyProp so it is not checked by default
+\* MonotonicCommitIndexProp ==
+\*     [][\A i \in Server :
+\*         commitIndex'[i] >= commitIndex[i]]_vars
+
+\* \* Each server's term is monotonically increasing
+\* MonotonicTermProp ==
+\*     [][\A i \in Server :
+\*         currentTerm'[i] >= currentTerm[i]]_vars
+
+\* \* Match index never decrements unless the current action is a node becoming leader
+\* \* Figure 2, page 4 in the raft paper:
+\* \* "Volatile state on leaders, reinitialized after election. For each server,
+\* \*  index of the highest log entry known to be replicated on server. Initialized
+\* \*  to 0, increases monotonically".  In other words, matchIndex never decrements
+\* \* unless the current action is a node becoming leader.
+\* MonotonicMatchIndexProp ==
+\*     [][(~ \E i \in Server: BecomeLeader(i)) => 
+\*             (\A i,j \in Server : matchIndex'[i][j] >= matchIndex[i][j])]_vars
+
 ===============================================================================

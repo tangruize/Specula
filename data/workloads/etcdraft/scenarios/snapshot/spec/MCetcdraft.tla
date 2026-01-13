@@ -369,4 +369,29 @@ Symmetry == Permutations(Server) \union Permutations(Value)
 \* It excludes 'constraintCounters' so that states differing only in counters are considered identical.
 ModelView == << view_vars >>
 
+\* ============================================================================
+\* MONOTONICITY PROPERTIES
+\* ============================================================================
+
+\* Each server's commit index is monotonically increasing
+\* This is weaker form of CommittedLogAppendOnlyProp so it is not checked by default
+MonotonicCommitIndexProp ==
+    [][\A i \in Server :
+        commitIndex'[i] >= commitIndex[i]]_mc_vars
+
+\* Each server's term is monotonically increasing
+MonotonicTermProp ==
+    [][\A i \in Server :
+        currentTerm'[i] >= currentTerm[i]]_mc_vars
+
+\* Match index never decrements unless the current action is a node becoming leader
+\* Figure 2, page 4 in the raft paper:
+\* "Volatile state on leaders, reinitialized after election. For each server,
+\*  index of the highest log entry known to be replicated on server. Initialized
+\*  to 0, increases monotonically".  In other words, matchIndex never decrements
+\* unless the current action is a node becoming leader.
+MonotonicMatchIndexProp ==
+    [][(~ \E i \in Server: etcd!BecomeLeader(i)) => 
+            (\A i,j \in Server : matchIndex'[i][j] >= matchIndex[i][j])]_mc_vars
+
 =============================================================================
