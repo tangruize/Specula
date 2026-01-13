@@ -38,6 +38,9 @@ ASSUME StepDownLimit \in Nat
 CONSTANT HeartbeatLimit
 ASSUME HeartbeatLimit \in Nat
 
+CONSTANT MaxTimeoutLimit
+ASSUME MaxTimeoutLimit \in Nat
+
 \* Snapshot-specific limits
 CONSTANT SnapshotLimit
 ASSUME SnapshotLimit \in Nat
@@ -127,9 +130,10 @@ MCAddLearner(i, j) ==
 MCTimeout(i) ==
     \* Limit the term of each server to reduce state space
     /\ currentTerm[i] < MaxTermLimit
-    \* Limit max number of simultaneous candidates
-    /\ Cardinality({ s \in GetConfig(i) : state[s] = Candidate}) < 1
+    \* Limit total number of timeouts
+    /\ constraintCounters.timeout < MaxTimeoutLimit
     /\ etcd!Timeout(i)
+    /\ constraintCounters' = [constraintCounters EXCEPT !.timeout = @ + 1]
 
 \* --- Client Request Constraints ---
 \* Limit number of requests (new entries) that can be made
@@ -248,7 +252,7 @@ MCSend(msg) ==
 
 MCInit ==
     /\ etcd!Init
-    /\ constraintCounters = [restart |-> 0, drop |-> 0, duplicate |-> 0, stepDown |-> 0, heartbeat |-> 0, snapshot |-> 0, compact |-> 0, confChange |-> 0, reportUnreachable |-> 0]
+    /\ constraintCounters = [restart |-> 0, drop |-> 0, duplicate |-> 0, stepDown |-> 0, heartbeat |-> 0, snapshot |-> 0, compact |-> 0, confChange |-> 0, reportUnreachable |-> 0, timeout |-> 0]
 
 \* ============================================================================
 \* NEXT STATE RELATIONS
@@ -293,8 +297,7 @@ MCNextAsync ==
         /\ MCCompactLog(i, commitIndex[i])
     \/ /\ \E m \in DOMAIN messages : etcd!Receive(m)
        /\ UNCHANGED faultVars
-    \/ /\ \E i \in Server : MCTimeout(i)
-       /\ UNCHANGED faultVars
+    \/ \E i \in Server : MCTimeout(i)
     \/ /\ \E i \in Server : etcd!Ready(i)
        /\ UNCHANGED faultVars
     \/ /\ \E i \in Server : MCStepDown(i)
