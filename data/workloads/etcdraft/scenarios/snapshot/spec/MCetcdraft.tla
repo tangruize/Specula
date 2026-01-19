@@ -169,12 +169,14 @@ MCRestart(i) ==
 
 \* Limit message drops to reduce state space explosion
 MCDropMessage(m) ==
+    /\ PartitionLimit = 0  \* Don't allow drop when partition is enabled
     /\ constraintCounters.drop < DropLimit
     /\ etcd!DropMessage(m)
     /\ constraintCounters' = [constraintCounters EXCEPT !.drop = @ + 1]
 
 \* Limit message duplicates to reduce state space explosion
 MCDuplicateMessage(m) ==
+    /\ PartitionLimit = 0  \* Don't allow duplicate when partition is enabled
     /\ constraintCounters.duplicate < DuplicateLimit
     /\ etcd!DuplicateMessage(m)
     /\ constraintCounters' = [constraintCounters EXCEPT !.duplicate = @ + 1]
