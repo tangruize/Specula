@@ -1,0 +1,2 @@
+"CounterExample written: MC_trace.tla"
+"CounterExample written: MC_trace.json"
