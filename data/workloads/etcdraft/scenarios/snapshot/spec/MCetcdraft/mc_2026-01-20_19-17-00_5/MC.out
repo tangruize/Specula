@@ -1,0 +1,2041 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.20 of Day Month 20?? (rev: 3e083e3)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2188:0 @!@!@
+Running Random Simulation with seed -1061576601585647184 with 40 workers on 96 cores with 91716MB heap and 206358MB offheap memory [pid: 3541081] (Linux 6.8.0-1044-azure amd64, Ubuntu 25.0.1 x86_64).
+@!@!@ENDMSG 2188 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /home/ubuntu/Specula/data/workloads/etcdraft/scenarios/snapshot/spec/MCetcdraft/mc_2026-01-20_19-17-00_5/MC.tla
+Parsing file /home/ubuntu/Specula/data/workloads/etcdraft/scenarios/snapshot/spec/MCetcdraft/mc_2026-01-20_19-17-00_5/MCetcdraft.tla
+Parsing file /tmp/tlc-17827631075022860397/TLC.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /tmp/tlc-17827631075022860397/_TLAPlusCounterExample.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/_TLAPlusCounterExample.tla)
+Parsing file /tmp/tlc-17827631075022860397/_JsonTrace.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/_JsonTrace.tla)
+Parsing file /home/ubuntu/Specula/data/workloads/etcdraft/scenarios/snapshot/spec/MCetcdraft/mc_2026-01-20_19-17-00_5/etcdraft.tla
+Parsing file /tmp/tlc-17827631075022860397/Naturals.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /tmp/tlc-17827631075022860397/Integers.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /tmp/tlc-17827631075022860397/Bags.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/Bags.tla)
+Parsing file /tmp/tlc-17827631075022860397/FiniteSets.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /tmp/tlc-17827631075022860397/Sequences.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /tmp/tlc-17827631075022860397/SequencesExt.tla (jar:file:/home/ubuntu/tlc-cmd/CommunityModules-deps.jar!/SequencesExt.tla)
+Parsing file /tmp/tlc-17827631075022860397/FiniteSetsExt.tla (jar:file:/home/ubuntu/tlc-cmd/CommunityModules-deps.jar!/FiniteSetsExt.tla)
+Parsing file /tmp/tlc-17827631075022860397/BagsExt.tla (jar:file:/home/ubuntu/tlc-cmd/CommunityModules-deps.jar!/BagsExt.tla)
+Parsing file /tmp/tlc-17827631075022860397/Folds.tla (jar:file:/home/ubuntu/tlc-cmd/CommunityModules-deps.jar!/Folds.tla)
+Parsing file /tmp/tlc-17827631075022860397/Functions.tla (jar:file:/home/ubuntu/tlc-cmd/CommunityModules-deps.jar!/Functions.tla)
+Parsing file /tmp/tlc-17827631075022860397/IOUtils.tla (jar:file:/home/ubuntu/tlc-cmd/CommunityModules-deps.jar!/IOUtils.tla)
+Parsing file /tmp/tlc-17827631075022860397/TLCExt.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/TLCExt.tla)
+Parsing file /tmp/tlc-17827631075022860397/Json.tla (jar:file:/home/ubuntu/tlc-cmd/tla2tools.jar!/tla2sany/StandardModules/Json.tla)
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Bags
+Semantic processing of module Folds
+Semantic processing of module Functions
+Semantic processing of module FiniteSetsExt
+Semantic processing of module SequencesExt
+Semantic processing of module BagsExt
+Semantic processing of module etcdraft
+Semantic processing of module MCetcdraft
+Semantic processing of module IOUtils
+Semantic processing of module TLCExt
+Semantic processing of module _TLAPlusCounterExample
+Semantic processing of module Json
+Semantic processing of module _JsonTrace
+Semantic processing of module MC
+Linting of module Folds
+Linting of module Functions
+Linting of module FiniteSetsExt
+Linting of module SequencesExt
+Linting of module BagsExt
+Linting of module etcdraft
+Linting of module MCetcdraft
+Linting of module IOUtils
+Linting of module TLCExt
+Linting of module _TLAPlusCounterExample
+Linting of module Json
+Linting of module _JsonTrace
+Linting of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2026-01-20 19:17:01)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 1 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at 2026-01-20 19:17:01.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2209:0 @!@!@
+Progress(95299) at 2026-01-20 19:18:01: 4703471 states generated, -1 distinct states found, -1 states left on queue.
+@!@!@ENDMSG 2209 @!@!@
+@!@!@STARTMSG 2209:0 @!@!@
+Progress(191804) at 2026-01-20 19:19:01: 9486824 states generated, -1 distinct states found, -1 states left on queue.
+@!@!@ENDMSG 2209 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant HistoryLogLengthInv is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <MCInit line 288, col 5 to line 289, col 226 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 0
+/\ constraintCounters = [ timeout |-> 0,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 0,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Follower @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> Nil @@ s2 :> Nil @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 1,
+        votedFor |-> Nil,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 1,
+        votedFor |-> Nil,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = <<>>
+/\ currentTerm = (s1 :> 1 @@ s2 :> 1 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <MCNextAsyncWithReady(s1) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 0
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 0,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> Nil @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 1,
+        votedFor |-> Nil,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = <<>>
+/\ currentTerm = (s1 :> 2 @@ s2 :> 1 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <MCNextAsyncWithReady(s1) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 1
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 0,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> Nil @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 1,
+        votedFor |-> Nil,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s2,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteRequest,
+    mseq |-> 0,
+    mlastLogTerm |-> 1,
+    mlastLogIndex |-> 2 ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 1 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <MCNextAsyncWithReady(s1) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 2
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 0,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> Nil @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 1,
+        votedFor |-> Nil,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s2,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteRequest,
+    mseq |-> 0,
+    mlastLogTerm |-> 1,
+    mlastLogIndex |-> 2 ] :>
+      1 @@
+  [ mdest |-> s2,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteRequest,
+    mseq |-> 1,
+    mlastLogTerm |-> 1,
+    mlastLogIndex |-> 2 ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 1 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <MCNextAsyncWithReady(s2) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 3
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 0,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s1,
+    msource |-> s2,
+    mterm |-> 2,
+    mtype |-> RequestVoteResponse,
+    mseq |-> 2,
+    mvoteGranted |-> TRUE ] :>
+      1 @@
+  [ mdest |-> s2,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteRequest,
+    mseq |-> 1,
+    mlastLogTerm |-> 1,
+    mlastLogIndex |-> 2 ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <MCNextAsyncWithReady(s1) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 3
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 0,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {s2} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s2,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteRequest,
+    mseq |-> 1,
+    mlastLogTerm |-> 1,
+    mlastLogIndex |-> 2 ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {s2} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <MCNextAsyncWithReady(s2) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 3
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 1,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {s2} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s2,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteRequest,
+    mseq |-> 1,
+    mlastLogTerm |-> 1,
+    mlastLogIndex |-> 2 ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 2,
+        entries |->
+            << [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {s2} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <MCNextAsyncWithReady(s1) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 4
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 1,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {s2} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s1,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteResponse,
+    mseq |-> 3,
+    mvoteGranted |-> TRUE ] :>
+      1 @@
+  [ mdest |-> s2,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteRequest,
+    mseq |-> 1,
+    mlastLogTerm |-> 1,
+    mlastLogIndex |-> 2 ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 2,
+        entries |->
+            << [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {s2} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <MCNextAsyncWithReady(s2) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 5
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 1,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {s2} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s1,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> RequestVoteResponse,
+    mseq |-> 3,
+    mvoteGranted |-> TRUE ] :>
+      1 @@
+  [ mdest |-> s1,
+    msource |-> s2,
+    mterm |-> 2,
+    mtype |-> RequestVoteResponse,
+    mseq |-> 4,
+    mvoteGranted |-> TRUE ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 2,
+        entries |->
+            << [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {s2} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <MCNextAsyncWithReady(s1) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 5
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 1,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {s1, s2} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Candidate @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s1,
+    msource |-> s2,
+    mterm |-> 2,
+    mtype |-> RequestVoteResponse,
+    mseq |-> 4,
+    mvoteGranted |-> TRUE ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 2,
+        entries |->
+            << [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {s1, s2} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <MCNextAsyncWithReady(s1) line 360, col 5 to line 360, col 35 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateReplicate @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 5
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 1,
+  confChange |-> 0,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {s1, s2} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Leader @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 2 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 3 @@ s2 :> 3 @@ s3 :> 3) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s1,
+    msource |-> s2,
+    mterm |-> 2,
+    mtype |-> RequestVoteResponse,
+    mseq |-> 4,
+    mvoteGranted |-> TRUE ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 2,
+        entries |->
+            << [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {s1, s2} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 2 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <MCDynamicConfigActions line 414, col 8 to line 414, col 50 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateReplicate @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 6
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 0,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 1,
+  confChange |-> 1,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = ( [ mdest |-> s1,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> AppendEntriesResponse,
+    mseq |-> 5,
+    msubtype |-> "app",
+    msuccess |-> TRUE,
+    mmatchIndex |-> 3,
+    mrejectHint |-> 0,
+    mlogTerm |-> 0 ] :>
+      1 )
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {s1, s2} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Leader @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 2 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [value |-> <<>>, term |-> 2, type |-> ValueEntry] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 3 @@ s2 :> 3 @@ s3 :> 3) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = ( [ mdest |-> s1,
+    msource |-> s2,
+    mterm |-> 2,
+    mtype |-> RequestVoteResponse,
+    mseq |-> 4,
+    mvoteGranted |-> TRUE ] :>
+      1 )
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [value |-> <<>>, term |-> 2, type |-> ValueEntry] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 2,
+        entries |->
+            << [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {s1, s2} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 2 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <MCNextUnreliable line 382, col 8 to line 384, col 27 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateReplicate @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 6
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 0,
+  drop |-> 1,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 1,
+  confChange |-> 1,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = ( [ mdest |-> s1,
+    msource |-> s1,
+    mterm |-> 2,
+    mtype |-> AppendEntriesResponse,
+    mseq |-> 5,
+    msubtype |-> "app",
+    msuccess |-> TRUE,
+    mmatchIndex |-> 3,
+    mrejectHint |-> 0,
+    mlogTerm |-> 0 ] :>
+      1 )
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {s1, s2} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Leader @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 2 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [value |-> <<>>, term |-> 2, type |-> ValueEntry] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 3 @@ s2 :> 3 @@ s3 :> 3) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = <<>>
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [value |-> <<>>, term |-> 2, type |-> ValueEntry] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 2,
+        entries |->
+            << [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {s1, s2} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 2 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <MCRestart(s1) line 166, col 5 to line 168, col 74 of module MCetcdraft>
+/\ progressState = ( s1 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s2 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) @@
+  s3 :> (s1 :> StateProbe @@ s2 :> StateProbe @@ s3 :> StateProbe) )
+/\ msgSeqCounter = 6
+/\ constraintCounters = [ timeout |-> 1,
+  request |-> 0,
+  restart |-> 1,
+  drop |-> 1,
+  duplicate |-> 0,
+  heartbeat |-> 0,
+  stepDown |-> 0,
+  snapshot |-> 0,
+  compact |-> 1,
+  confChange |-> 1,
+  reportUnreachable |-> 0,
+  partition |-> 0 ]
+/\ pendingMessages = <<>>
+/\ appliedConfigIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ reconfigCount = 0
+/\ votesResponded = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ msgAppFlowPaused = ( s1 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s2 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) @@
+  s3 :> (s1 :> FALSE @@ s2 :> FALSE @@ s3 :> FALSE) )
+/\ state = (s1 :> Follower @@ s2 :> Follower @@ s3 :> Follower)
+/\ pendingSnapshot = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ config = ( s1 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s2 :>
+      [ learners |-> {},
+        jointConfig |-> <<{s1, s2}, {}>>,
+        autoLeave |-> FALSE ] @@
+  s3 :> [learners |-> {}, jointConfig |-> <<{}, {}>>, autoLeave |-> FALSE] )
+/\ matchIndex = ( s1 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s2 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) @@
+  s3 :> (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0) )
+/\ applied = (s1 :> 0 @@ s2 :> 2 @@ s3 :> 0)
+/\ votedFor = (s1 :> s1 @@ s2 :> s1 @@ s3 :> Nil)
+/\ durableState = ( s1 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s2 :>
+      [ currentTerm |-> 2,
+        votedFor |-> s1,
+        log |-> 2,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1,
+        commitIndex |-> 2,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{s1, s2}, {}>>,
+              autoLeave |-> FALSE ] ] @@
+  s3 :>
+      [ currentTerm |-> 0,
+        votedFor |-> Nil,
+        log |-> 0,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0,
+        commitIndex |-> 0,
+        config |->
+            [ learners |-> {},
+              jointConfig |-> <<{}, {}>>,
+              autoLeave |-> FALSE ] ] )
+/\ historyLog = ( s1 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [value |-> <<>>, term |-> 2, type |-> ValueEntry] >> @@
+  s2 :>
+      << [ value |-> [newconf |-> {s1}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ],
+         [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+           term |-> 1,
+           type |-> ConfigEntry ] >> @@
+  s3 :> <<>> )
+/\ nextIndex = ( s1 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s2 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) @@
+  s3 :> (s1 :> 1 @@ s2 :> 1 @@ s3 :> 1) )
+/\ commitIndex = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ inflights = ( s1 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s2 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) @@
+  s3 :> (s1 :> {} @@ s2 :> {} @@ s3 :> {}) )
+/\ messages = <<>>
+/\ currentTerm = (s1 :> 2 @@ s2 :> 2 @@ s3 :> 0)
+/\ log = ( s1 :>
+      [ offset |-> 1,
+        entries |->
+            << [ value |-> [newconf |-> {s1}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ],
+               [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] @@
+  s2 :>
+      [ offset |-> 2,
+        entries |->
+            << [ value |-> [newconf |-> {s1, s2}, learners |-> {}],
+                 term |-> 1,
+                 type |-> ConfigEntry ] >>,
+        snapshotIndex |-> 1,
+        snapshotTerm |-> 1 ] @@
+  s3 :>
+      [ offset |-> 1,
+        entries |-> <<>>,
+        snapshotIndex |-> 0,
+        snapshotTerm |-> 0 ] )
+/\ partitions = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+/\ votesGranted = (s1 :> {} @@ s2 :> {} @@ s3 :> {})
+/\ pendingConfChangeIndex = (s1 :> 0 @@ s2 :> 0 @@ s3 :> 0)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2209:0 @!@!@
+Progress(229566) at 2026-01-20 19:19:24: 11360465 states generated, -1 distinct states found, -1 states left on queue.
+@!@!@ENDMSG 2209 @!@!@
+@!@!@STARTMSG 2210:0 @!@!@
+The number of states generated: 11360489
+Simulation using seed -1061576601585647184 and aril 0
+@!@!@ENDMSG 2210 @!@!@
+@!@!@STARTMSG 2209:0 @!@!@
+Progress(229566) at 2026-01-20 19:19:24: 11360596 states generated, -1 distinct states found, -1 states left on queue.
+@!@!@ENDMSG 2209 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 143920ms at (2026-01-20 19:19:24)
+@!@!@ENDMSG 2186 @!@!@
