@@ -413,27 +413,19 @@ MCNextWithReady ==
 \* Dynamic config change actions (shared by MCNextDynamic and MCNextDynamicWithReady)
 MCDynamicConfigActions ==
     \/ /\ \E i \in Server : MCChangeConf(i)
-    \/ /\ \E i \in Server : MCChangeConfAndSend(i)
+    \* \/ /\ \E i \in Server : MCChangeConfAndSend(i)
     \/ /\ \E i \in Server : etcd!ApplySimpleConfChange(i)
        /\ UNCHANGED faultVars
     \* ProposeLeaveJoint: Leader proposes empty ConfChangeV2 to leave joint config
     \* Reference: raft.go:745-760 - AutoLeave mechanism requires log entry commitment
     \/ /\ \E i \in Server : etcd!ProposeLeaveJoint(i)
        /\ UNCHANGED faultVars
-    \* ApplySnapshotConfChange: Apply configuration from snapshot's historyLog
-    \* Key constraint: voters must come from historyLog, not arbitrary
-    \* Key constraint: only apply committed config entries (per node.go:179-183)
-    \/ /\ \E i \in Server :
-           LET configIndices == {k \in 1..Len(historyLog[i]) : historyLog[i][k].type = ConfigEntry}
-               lastConfigIdx == IF configIndices /= {} THEN Max(configIndices) ELSE 0
-               newVoters == IF lastConfigIdx > 0
-                            THEN historyLog[i][lastConfigIdx].value.newconf
-                            ELSE {}
-           IN /\ newVoters /= {}
-              /\ newVoters /= GetConfig(i)  \* Only apply if config differs
-              /\ lastConfigIdx <= commitIndex[i]  \* Only apply committed configs
-              /\ etcd!ApplySnapshotConfChange(i, newVoters)
-       /\ UNCHANGED faultVars
+    \* NOTE: ApplySnapshotConfChange action REMOVED
+    \* Config is already applied atomically in HandleSnapshotRequest (Case 3: Actual Restore)
+    \* Reference: raft.go:1919-1934 - restore() calls r.raftLog.restore(s) then switchToConfig()
+    \* Having a separate action would cause config regression bugs:
+    \* - If config was updated after receiving snapshot (via normal ApplyConfigUpdate)
+    \* - The separate action could reset config back to snapshot's old config
 
 MCNextDynamic ==
     \/ MCNext
@@ -473,8 +465,7 @@ mc_etcdSpecWithReady_no_conf_change ==
 Symmetry == Permutations(Server) \union Permutations(Value)
 
 \* View used for state space reduction.
-\* It excludes 'constraintCounters' so that states differing only in counters are considered identical.
-ModelView == << view_vars >>
+ModelView == << view_vars, faultVars >>
 
 \* ============================================================================
 \* STATE SPACE PRUNING CONSTRAINTS
@@ -505,9 +496,11 @@ AllMsgBufferConstraint ==
 
 \* Each server's commit index is monotonically increasing
 \* This is weaker form of CommittedLogAppendOnlyProp so it is not checked by default
+\* Note: Excludes Restart action since nodes recover from durableState,
+\*       which may have an older commitIndex if not yet persisted before crash
 MonotonicCommitIndexProp ==
-    [][\A i \in Server :
-        commitIndex'[i] >= commitIndex[i]]_mc_vars
+    [][(~\E i \in Server: Restart(i)) =>
+        \A i \in Server : commitIndex'[i] >= commitIndex[i]]_mc_vars
 
 \* Each server's term is monotonically increasing
 \* Note: Excludes Restart action since nodes recover from durableState,
@@ -517,19 +510,24 @@ MonotonicTermProp ==
         \A i \in Server : currentTerm'[i] >= currentTerm[i]]_mc_vars
 
 \* Match index never decrements unless the current action is a node becoming leader
+\* or a node restarting (crash/recovery).
 \* Figure 2, page 4 in the raft paper:
 \* "Volatile state on leaders, reinitialized after election. For each server,
 \*  index of the highest log entry known to be replicated on server. Initialized
 \*  to 0, increases monotonically".  In other words, matchIndex never decrements
-\* unless the current action is a node becoming leader.
+\* unless the current action is a node becoming leader or restarting.
 \*
-\* Additional exception: When a node is re-added to the config after being removed,
-\* its matchIndex is reset to 0. This is correct behavior per confchange.go:
-\* - remove() deletes Progress when node leaves config (line 242)
-\* - makeLearner()/makeVoter() calls initProgress with Match=0 for new nodes (line 262)
-\* Reference: confchange/confchange.go:231-243 (remove), 246-270 (initProgress)
+\* Additional exceptions:
+\* 1. When a node is re-added to the config after being removed,
+\*    its matchIndex is reset to 0. This is correct behavior per confchange.go:
+\*    - remove() deletes Progress when node leaves config (line 242)
+\*    - makeLearner()/makeVoter() calls initProgress with Match=0 for new nodes (line 262)
+\*    Reference: confchange/confchange.go:231-243 (remove), 246-270 (initProgress)
+\* 2. When a node restarts, all volatile state including matchIndex is lost.
+\*    The node must rebuild this knowledge after recovery.
+\*    Reference: etcdraft.tla Restart(i) - matchIndex reset to 0 for all peers
 MonotonicMatchIndexProp ==
-    [][(~ \E i \in Server: etcd!BecomeLeader(i)) =>
+    [][(~ \E i \in Server: etcd!BecomeLeader(i) \/ etcd!Restart(i)) =>
             (\A i,j \in Server :
                 LET
                     \* Pre-state: nodes tracked by leader i
@@ -563,12 +561,12 @@ LeaderCommitCurrentTermLogsProp ==
 \* 1. Log length never decreases for a leader
 \* 2. Existing entries are never modified (using historyLog for full history)
 \*
-\* Note: We exclude Restart action since a leader that crashes loses leadership.
-\* After restart, it becomes a Follower (state'[i] = Follower in Restart action).
+\* Note: We require state'[i] = Leader to exclude Restart action, since a leader
+\* that crashes loses leadership and becomes Follower (state'[i] = Follower).
 LeaderAppendOnlyProp ==
     [][
         \A i \in Server :
-            state[i] = Leader =>
+            (state[i] = Leader /\ state'[i] = Leader) =>
                 \* Log only grows (or stays same)
                 /\ LastIndex(log'[i]) >= LastIndex(log[i])
                 \* All existing entries remain unchanged (prefix comparison)

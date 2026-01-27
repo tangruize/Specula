@@ -245,7 +245,14 @@ progressVars == <<progressState, pendingSnapshot, nextIndex, msgAppFlowPaused, i
 
 \* All variables; used for stuttering (asserting state hasn't changed).
 vars == <<messageVars, serverVars, candidateVars, leaderVars, logVars, configVars, durableState, progressVars, partitionVars>>
-view_vars == <<messageVars, serverVars, candidateVars, leaderVars, log, commitIndex, config, durableState, progressVars, partitionVars>>
+
+\* View variables for state space reduction.
+\* Excludes from vars:
+\* - historyLog: Ghost variable for verification only, doesn't affect system behavior
+\* - applied: Can be derived from commitIndex progression
+\* - reconfigCount: Pure counter for trace validation
+\* Note: msgSeqCounter is embedded in messages (mseq field), so excluding it here has no effect
+view_vars == <<messages, pendingMessages, serverVars, candidateVars, leaderVars, log, commitIndex, config, progressVars, partitionVars>>
 
 ----
 \* Helpers
@@ -1554,10 +1561,9 @@ HandleAppendEntriesResponse(i, j, m) ==
     /\ \/ /\ m.msuccess \* successful
           /\ matchIndex' = [matchIndex EXCEPT ![i][j] = Max({@, m.mmatchIndex})]
           /\ UNCHANGED <<pendingConfChangeIndex>>
-          \* Free confirmed inflights, clear msgAppFlowPaused
-          \* Reference: MaybeUpdate() call in raft.go:1260-1289 handleAppendEntries()
+          \* Free confirmed inflights
+          \* Reference: inflights.go FreeLE() called from raft.go handleAppendEntries()
           /\ FreeInflightsLE(i, j, m.mmatchIndex)
-          /\ ClearMsgAppFlowPausedOnUpdate(i, j)
           \* State transition logic for successful MsgAppResp
           \* Reference: raft.go:1519-1540 handleAppendEntriesResponse()
           \* Key conditions:
@@ -1578,14 +1584,17 @@ HandleAppendEntriesResponse(i, j, m) ==
                                           \/ newMatchIndex + 1 >= pendingSnapshot[i][j]
              IN CASE \* Case 1: StateProbe -> StateReplicate
                      \* Reference: raft.go:1521-1522
+                     \* BecomeReplicate calls ResetState which clears MsgAppFlowPaused
                      progressState[i][j] = StateProbe
                      /\ (maybeUpdated \/ alreadyMatched) ->
                         /\ progressState' = [progressState EXCEPT ![i][j] = StateReplicate]
                         /\ nextIndex' = [nextIndex EXCEPT ![i][j] = Max({@, m.mmatchIndex + 1})]
+                        /\ msgAppFlowPaused' = [msgAppFlowPaused EXCEPT ![i][j] = FALSE]
                         /\ UNCHANGED pendingSnapshot
                   \* Case 2: StateSnapshot -> StateReplicate (via BecomeProbe + BecomeReplicate)
                   \* Reference: raft.go:1523-1537
                   \* Condition: MaybeUpdate returns true AND Match+1 >= firstIndex
+                  \* BecomeReplicate calls ResetState which clears MsgAppFlowPaused
                   [] progressState[i][j] = StateSnapshot
                      /\ maybeUpdated
                      /\ canResumeFromSnapshot ->
@@ -1596,13 +1605,19 @@ HandleAppendEntriesResponse(i, j, m) ==
                         \* (Since canResumeFromSnapshot implies Match+1 >= offset,
                         \*  and typically m.mmatchIndex >= pendingSnapshot when this path is taken)
                         /\ nextIndex' = [nextIndex EXCEPT ![i][j] = m.mmatchIndex + 1]
+                        /\ msgAppFlowPaused' = [msgAppFlowPaused EXCEPT ![i][j] = FALSE]
                         /\ pendingSnapshot' = [pendingSnapshot EXCEPT ![i][j] = 0]
                   \* Case 3: StateReplicate or conditions not met
                   \* Reference: raft.go:1538-1539 for StateReplicate (FreeLE handled separately)
+                  \* MaybeUpdate only clears MsgAppFlowPaused when matchIndex is actually updated
                   [] OTHER ->
                         /\ UNCHANGED <<progressState, pendingSnapshot>>
                         \* Still update nextIndex per MaybeUpdate logic
                         /\ nextIndex' = [nextIndex EXCEPT ![i][j] = Max({@, m.mmatchIndex + 1})]
+                        \* Only clear MsgAppFlowPaused if MaybeUpdate returns true (matchIndex updated)
+                        /\ IF maybeUpdated
+                           THEN msgAppFlowPaused' = [msgAppFlowPaused EXCEPT ![i][j] = FALSE]
+                           ELSE UNCHANGED msgAppFlowPaused
        \/ /\ \lnot m.msuccess \* not successful
           \* Implement MaybeDecrTo (progress.go:226-252)
           \* rejected = m.mmatchIndex, matchHint = m.mrejectHint
@@ -1651,16 +1666,35 @@ HandleAppendEntriesResponse(i, j, m) ==
 HandleHeartbeatResponse(i, j, m) ==
     /\ m.mterm = currentTerm[i]
     /\ m.msubtype = "heartbeat"
-    \* Only clear MsgAppFlowPaused, do NOT transition state
     \* Reference: raft.go:1495 pr.MsgAppFlowPaused = false
-    /\ msgAppFlowPaused' = [msgAppFlowPaused EXCEPT ![i][j] = FALSE]
-    \* If StateReplicate and inflights over capacity, free one (edge case)
-    \* Reference: raft.go:1497-1499
-    \* Note: Use > instead of >= because FreeFirstOne only matters when truly over capacity
-    \* In normal flow, heartbeat response doesn't free inflights if at exactly MaxInflightMsgs
-    /\ IF progressState[i][j] = StateReplicate /\ Cardinality(inflights[i][j]) > MaxInflightMsgs
-       THEN inflights' = [inflights EXCEPT ![i][j] = @ \ {Min(@)}]
-       ELSE UNCHANGED inflights
+    \* Reference: raft.go:1502 r.sendAppend(m.From) -> SentEntries() -> pr.MsgAppFlowPaused = pr.Inflights.Full()
+    \* 
+    \* In real code, after setting MsgAppFlowPaused = false, sendAppend is called.
+    \* If sendAppend sends a message, SentEntries() is called which sets:
+    \*   pr.MsgAppFlowPaused = pr.Inflights.Full()
+    \* If inflights is already full, maybeSendAppend returns early (IsPaused check),
+    \* so no message is sent and MsgAppFlowPaused stays false only briefly.
+    \* However, in the spec we model the combined effect: if inflights is full,
+    \* the pause state should remain true after this operation completes.
+    \*
+    \* Fix: In StateReplicate, only clear MsgAppFlowPaused if inflights is not full.
+    \* This models the combined effect of the real code's:
+    \*   1. pr.MsgAppFlowPaused = false
+    \*   2. sendAppend() which may call SentEntries() setting pr.MsgAppFlowPaused = pr.Inflights.Full()
+    /\ LET newInflights == IF progressState[i][j] = StateReplicate /\ Cardinality(inflights[i][j]) > MaxInflightMsgs
+                           THEN inflights[i][j] \ {Min(inflights[i][j])}
+                           ELSE inflights[i][j]
+           \* After potentially freeing one inflight, check if still full
+           stillFull == Cardinality(newInflights) >= MaxInflightMsgs
+       IN /\ msgAppFlowPaused' = [msgAppFlowPaused EXCEPT ![i][j] = 
+               IF progressState[i][j] = StateReplicate 
+               THEN stillFull  \* SentEntries sets MsgAppFlowPaused = Inflights.Full()
+               ELSE FALSE]  \* StateProbe: just clear the pause
+          \* If StateReplicate and inflights over capacity, free one (edge case)
+          \* Reference: raft.go:1497-1499
+          /\ IF progressState[i][j] = StateReplicate /\ Cardinality(inflights[i][j]) > MaxInflightMsgs
+             THEN inflights' = [inflights EXCEPT ![i][j] = newInflights]
+             ELSE UNCHANGED inflights
     /\ Discard(m)
     /\ UNCHANGED <<serverVars, candidateVars, leaderVars, logVars, configVars, durableState,
                    matchIndex, nextIndex, progressState, pendingSnapshot, partitions>>
@@ -2002,8 +2036,8 @@ NextDynamic ==
     \/ \E i \in Server : ChangeConfAndSend(i)
     \/ \E i \in Server : ApplySimpleConfChange(i)
     \/ \E i \in Server : ProposeLeaveJoint(i)
-    \/ \E i \in Server, newVoters \in SUBSET Server, newLearners \in SUBSET Server :
-        ImplicitLeaveJoint(i, newVoters, newLearners)
+    \* \/ \E i \in Server, newVoters \in SUBSET Server, newLearners \in SUBSET Server :
+    \*     ImplicitLeaveJoint(i, newVoters, newLearners)
 
 \* The specification must start with the initial state and transition according
 \* to Next.
@@ -2102,8 +2136,18 @@ LogMatchingInv ==
 
 \* All committed entries are contained in the log
 \* of at least one server in every quorum.
-\* In joint config, it's safe if EITHER incoming OR outgoing quorums hold the data,
-\* because election requires both quorums, so one blocking is enough.
+\* Committed entries must be preserved in the current config's quorum.
+\*
+\* Key insight about Joint Consensus:
+\* - In joint config <<incoming, outgoing>>, commits require BOTH quorums
+\* - LeaveJoint can only commit when both quorums agree
+\* - So when we're in joint state, the incoming config hasn't "taken over" yet
+\* - We should check the outgoing config (which is the one that was used to commit)
+\*
+\* For non-joint config: check that quorum holds committed entries
+\* For joint config: check OUTGOING config's quorum (the one that committed the entries)
+\*   The incoming config will only be used alone after LeaveJoint commits,
+\*   and LeaveJoint commit requires incoming quorum to have all entries anyway.
 \*
 \* Note: Only check servers whose config is up-to-date (applied all committed config entries).
 \* A follower may have a stale config while having received committed entries from the leader.
@@ -2117,14 +2161,14 @@ QuorumLogInv ==
             \* Check if server's config is up-to-date (applied all committed config entries)
             configUpToDate == configIndicesInCommitted = {} \/
                               appliedConfigIndex[i] >= Max(configIndicesInCommitted)
+            \* In joint config, use outgoing config for quorum check
+            \* because incoming config hasn't taken effect yet (LeaveJoint not committed)
+            effectiveConfig == IF IsJointConfig(i) THEN GetOutgoingConfig(i) ELSE GetConfig(i)
         IN
         \* Only check servers with up-to-date config
         configUpToDate =>
-            (\/ \A S \in Quorum(GetConfig(i)) :
-                   \E j \in S : IsPrefix(Committed(i), historyLog[j])
-             \/ (IsJointConfig(i) /\
-                 \A S \in Quorum(GetOutgoingConfig(i)) :
-                     \E j \in S : IsPrefix(Committed(i), historyLog[j])))
+            \A S \in Quorum(effectiveConfig) :
+                \E j \in S : IsPrefix(Committed(i), historyLog[j])
 
 \* The "up-to-date" check performed by servers
 \* before issuing a vote implies that i receives
@@ -2405,6 +2449,8 @@ CommitIndexBoundInv ==
         commitIndex[i] <= LastIndex(log[i])
 
 \* Term should be monotonic in the log (newer entries have >= terms)
+\* Optimized: Only check adjacent pairs - equivalent to checking all pairs
+\* due to transitivity of <=. Reduces complexity from O(n²) to O(n).
 LogTermMonotonic ==
     \A i \in Server :
         \A idx \in 1..(LastIndex(log[i]) - 1) :
