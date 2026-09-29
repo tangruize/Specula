@@ -86,6 +86,7 @@ class TestInstallSkills(SkillInstallCase):
                 "bug-confirmation",
                 "code-analysis",
                 "harness-generation",
+                "protocol-analysis",
                 "spec-generation",
                 "tla-checking-workflow",
                 "tla-trace-workflow",

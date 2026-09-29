@@ -26,6 +26,10 @@ It uses coding agents to write TLA+ specs of the target system, including invari
 
 We maintain [a list of bugs found by Specula](https://docs.google.com/spreadsheets/d/1AVXdKjNfD4952hZqyB-_wTdrzeTw0SD73f3F0zWJ0as). We would love to hear about the bugs you find using Specula.
 
+## Optional proof-agent protocol analysis
+
+This fork also provides a bounded [protocol-analysis method](docs/ProtocolAnalysis.md) for specification and proof agents. It examines the establishment, preservation, necessity and consumers of shared-state/lifecycle properties, producing advisory obligations rather than TLA+ or confirmed bugs. Consumers load the method from a pinned fork commit and use the existing launch adapters; the parent framework retains its CLI, schemas, budgets and evidence policy. This optional path does not require the full setup below.
+
 ## Prerequisites
 
 - Python 3.10+ with pip
