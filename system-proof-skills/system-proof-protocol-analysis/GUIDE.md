@@ -1,5 +1,7 @@
 # Protocol analysis for goal-driven system proof
 
+[Simplified Chinese review version](GUIDE.zh-CN.md).
+
 This guide and [SKILL.md](SKILL.md) form a standalone caller-facing bundle. Copy or load this directory when integrating the tool; merely keeping it here does not install it into the main agent. The runtime method remains in the pinned Specula checkout at `skills/protocol_analysis/references/scoped-analysis.md`; the bundle does not replace that method or provide the executable.
 
 `analyze-protocol` performs optional, bounded source analysis across operations and shared-state lifecycles. It produces source-linked candidate contracts, properties and proof obligations. It does not select the campaign's specification, establish proof progress, confirm bugs, or approve an implementation change. Tool choice, scope, interpretation and the next mission remain with the calling agent under the existing campaign contract. FM-Agent is a separate tool, not a mode or prerequisite of this one.

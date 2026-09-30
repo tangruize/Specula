@@ -5,7 +5,9 @@ description: "Use the optional analyze-protocol tool for goal-scoped specificati
 
 # Goal-scoped protocol analysis
 
-This is a caller-facing integration skill, not the analysis worker's runtime method. Read [GUIDE.md](GUIDE.md) for request examples, artifacts, status meanings, prerequisites and terminology. Keep both files together when copying this bundle; it is not automatically installed into the main agent.
+For Human review, see the [Simplified Chinese version](SKILL.zh-CN.md). It describes the same skill, not a separate skill registration.
+
+This is a caller-facing integration skill, not the analysis worker's runtime method. Read [GUIDE.md](GUIDE.md) for request examples, artifacts, status meanings, prerequisites and terminology. Keep this directory together when copying the bundle; it is not automatically installed into the main agent.
 
 ## Invocation
 
