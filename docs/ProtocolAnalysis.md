@@ -2,6 +2,8 @@
 
 This fork adds an optional `protocol-analysis` skill. It adapts Specula's pre-TLA source investigation to an existing verification goal. It is not a new phase of `specula run`, does not replace the original `code-analysis` skill, and does not automatically generate TLA+, run verification/tests, or confirm bugs.
 
+The caller-facing skill and usage guide are collected in [system-proof-skills/system-proof-protocol-analysis](../system-proof-skills/system-proof-protocol-analysis/). That portable bundle describes invoking the host's tool and retaining evidence; this document describes the worker's runtime contract.
+
 The canonical method is [scoped-analysis.md](../skills/protocol_analysis/references/scoped-analysis.md). Consumers must load this file from their pinned checkout, not a machine-local modified copy. The existing `deep-analysis.md`, `concurrent-analysis.md` and `distributed-analysis.md` in `skills/code_analysis/references/` supply analysis patterns; the bounded method takes precedence over their full-pipeline or exhaustive-investigation recommendations.
 
 ## Integration boundary
