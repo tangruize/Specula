@@ -26,11 +26,13 @@ It uses coding agents to write TLA+ specs of the target system, including invari
 
 We maintain [a list of bugs found by Specula](https://docs.google.com/spreadsheets/d/1AVXdKjNfD4952hZqyB-_wTdrzeTw0SD73f3F0zWJ0as). We would love to hear about the bugs you find using Specula.
 
-## Optional proof-agent protocol analysis
+## System-proof agent integration
 
-This fork also provides a bounded [protocol-analysis method](docs/ProtocolAnalysis.md) for specification and proof agents. It examines the establishment, preservation, necessity and consumers of shared-state/lifecycle properties, producing advisory obligations rather than TLA+ or confirmed bugs. Consumers load the method from a pinned fork commit and use the existing launch adapters; the parent framework retains its CLI, schemas, budgets and evidence policy. This optional path does not require the full setup below.
+When Specula is invoked through `system-proof-agent`, the normative entry is the self-contained [`system-proof-protocol-analysis` bundle](system-proof-skills/system-proof-protocol-analysis/): read [`SKILL.md`](system-proof-skills/system-proof-protocol-analysis/SKILL.md) for the bounded procedure and [`GUIDE.md`](system-proof-skills/system-proof-protocol-analysis/GUIDE.md) for request, evidence and trust rules. The rest of this README and Specula's original documentation remain the reference for standalone TLA+, model-checking and bug-confirmation workflows; they do not override a system-proof campaign's goal, scope, proof map or evidence policy.
 
-For later system-proof-agent integration, the standalone [system-proof-protocol-analysis bundle](system-proof-skills/system-proof-protocol-analysis/) keeps the caller-facing `SKILL.md` and `GUIDE.md` together. It is separate from the worker's runtime skill and is not automatically installed by the normal skill setup.
+The unified native adapter uses the authenticated GitHub Copilot CLI by default and requires no separate provider, API key, MCP installation, TLA generation or full `specula setup`. It runs only the bounded pre-TLA protocol/lifecycle analysis method and returns source-linked candidate premises, scope restrictions, operation sequences and discriminating checks for Action 1 judgment. Its report does not prove an invariant, confirm a bug or close a campaign edge. Do not enter `specula run`, `spec-generation`, TLC or bug-confirmation merely because protocol analysis was requested; those standalone workflows remain available only when deliberately selected as separate work.
+
+Use FM-Agent function analysis when one direct caller is blocked on one function or selected callee. Use bounded Specula protocol analysis when the needed fact spans multiple operations, writers, lifecycle phases, callbacks or compensating failure paths. Neither tool is a mandatory precursor to the other, and their outputs remain advisory.
 
 ## Prerequisites
 

@@ -4,22 +4,32 @@
 
 The analysis is performed by an agent, not a deterministic semantic oracle. Observations, hypotheses, candidate obligations and suggested checks are evidence to review, with possible mistakes and incomplete coverage. Their quality depends on the question, supplied context, scope and execution; no particular discovery or improvement is promised, and recommendations do not authorize a decision or action.
 
-## Possible contributions to a system-proof task
+## Choosing between FM function analysis and protocol analysis
 
-The useful output is a source-linked premise or obligation that can be connected to the system goal, not simply a longer list of invariants. The following lessons come from the paired HFS/OpenVMM experiments and their follow-up review; they explain possible uses, not decisions prescribed for a new target. Applicability depends on the question's structure, not system names or API spellings.
+Use the narrowest method that matches the blocking question:
 
-| Need in the proof task | Historical observation | Possible contribution and evidence limit |
+| Blocking question | Prefer | Boundary |
 | --- | --- | --- |
-| Relate a contract to the actual consumer | HFS protocol analysis made the resolver/validator record relation and selected-slot witness more concrete | Name the relation needed from open to read, its establishing operation and intervening mutators. Much of the gap was already in the supplied frontier; this was refinement, not independent recovery of the specification. |
-| Avoid an unnecessary or false global invariant | HFS's whole-map restore frame did not require global identity uniqueness. A protocol recommendation to equate unchanged legacy content with operational bytes was rejected: the gap control gave 512 versus 1024 bytes. | Ask whether a property is needed, needs a restricted domain, or conflicts with evidence. The unnecessary strengthening was already known; the false recommendation shows that the report cannot decide correctness by itself. |
-| Find the missing connection from local proofs to the top-level claim | OpenVMM protocol analysis identified different decoder/representation predicates at `InitializedVm::load -> restore_snapshot_state` | Identify a concrete call-site bridge for inventory and VP count. A later runtime check cannot justify an entry precondition. This located a proof obligation; it did not prove it. |
-| Turn a lifecycle hypothesis into a discriminating check | Following an FM hypothesis, source review and separate native HFS tests showed that closing a handle against another volume can free a slot while that volume's original handle remains live | Distinguish an origin-volume/client discipline from an unrestricted API guarantee. Neither raw analysis report reproduced this trace; test design and execution were separate follow-up work. The fixtures did not prove mount reachability or all Verus premises. |
+| What does one function or selected callee promise to its direct caller? | `analyze-function` | One source span, contract variants, frame conditions and a selected child obligation |
+| Which operation establishes a shared-state premise, which transitions preserve or invalidate it, and which caller consumes it? | `analyze-protocol` | A bounded set of operations/files and an explicit lifecycle or observation interval |
+| Does a proposed global invariant need a narrower domain, phase or object set? | `analyze-protocol` | Candidate scope and counter-scenarios, not an invariant proof |
+| Did a protocol report reduce the problem to one callee contract? | Return to `analyze-function` or direct proof | The handoff must name the exact caller fact and remaining authoritative check |
 
-The protocol runs took 225.481 seconds for HFS (partial) and 205.861 seconds for OpenVMM (structurally completed). These are single historical observations, excluding intake and follow-up checks, not latency guarantees. The separate HFS native run passed 25 tests, including four new diagnostics, in 13.12 seconds including a fresh build. Some OpenVMM report citations were in range but pointed to the wrong definitions, requiring source review.
+There is no mandatory order and no reason to invoke both tools by default. FM analysis may expose a shared-state premise that deserves protocol review; protocol analysis may localize a gap to one function. Tool transitions are justified by the active proof obligation, not by a fixed pipeline.
 
-These experiments support an optional premise/obligation review, not a unique ability unavailable to FM, superiority at equal scope, autonomous bug confirmation or newly completed proofs. The protocol runs had broader source access than the function baseline; existing findings were supplied as context. Preserve that distinction when assessing novelty.
+## Contributions to Action 1
 
-The host repository retains the evidence in `experiments/protocol-analysis/REPORT.md`, `experiments/protocol-analysis/results.json` and `experiments/protocol-analysis/hfs-lifecycle.tests.rs`. These are historical records, not current-method receipts; they are not bundled with a standalone Specula checkout.
+Useful protocol output can:
+
+- propose materially different lifecycle or invariant candidates, including a weaker observable relation;
+- identify a missing establisher, unexamined writer, cancellation/error transition or caller compensation;
+- classify a proposed global property as a candidate, requiring restriction, not required by the goal, or contradicted by bounded source evidence;
+- connect a local contract to the operation and caller that establish and consume it;
+- give a concrete sequence, source audit, component test, implementation proof or model check that discriminates between candidates.
+
+These are inputs to specification attack and reasoning, not an adequacy oracle. A report may repeat supplied context, cite the wrong definition, omit an out-of-scope writer or recommend a false strengthening. The calling agent must distinguish prior findings from new deductions and use independent evidence before changing authoritative status.
+
+Real-system runs are compatibility and information-value evidence only. Their findings, runtimes and project-specific names must not become default prompt rules or claims of superiority over FM-Agent.
 
 ## Request fields and scope
 
@@ -45,7 +55,7 @@ All selected paths and anchors must exist. Paths are source-root-relative; expli
 | Command | Parameters and behavior |
 | --- | --- |
 | `prepare` | Request file plus required `--source` and `--out`; optional `--specula-root`. Captures input/method identity without calling the model. The output directory must be new. |
-| `run` | Prepared directory and required positive-integer `--timeout` in seconds. Optional `--agent` selects `copilot-cli` (default), `codex` or `claude-code`; optional `--model` and `--effort` otherwise retain backend defaults. |
+| `run` | Prepared directory and required positive-integer `--timeout` in seconds. The native system-proof adapter uses authenticated `copilot-cli`; optional `model` and `effort` overrides otherwise retain the Copilot CLI default. Standalone Specula retains its other adapters. |
 | `status` | Run directory; inspects retained results and freshness without rerunning analysis |
 
 Each new attempt needs a new run directory; the tool does not schedule or retry runs. Timeout terminates the invocation's process group and retains partial artifacts. Preserve the outcome and missing coverage before deciding whether another bounded attempt is useful. A source or method change can leave the historical status as completed while `current` becomes false; inspect both fields.
@@ -82,6 +92,6 @@ Coverage and citations are structurally checked, but whether a cited line suppor
 
 ## Runtime boundary
 
-Execution requires Git, Bash, Python, a configured coding-agent backend and a clean, pinned Specula checkout containing the bounded method. If the checkout is not automatically discovered, specify it with `SPECULA_ROOT` or `--specula-root`. Backend/model configuration remains explicit or inherited, not fixed by this document.
+Execution requires Git, Bash, Python, an authenticated Copilot CLI and a clean, pinned Specula checkout containing the bounded method. The native system-proof adapter resolves its relocated submodule automatically and does not require `SPECULA_ROOT`, an API key, MCP setup or another provider. Standalone invocation may still use `SPECULA_ROOT`, `--specula-root` and the other adapters documented by Specula.
 
 Protocol analysis does not require TLA generation, TLC or Verus. The caller owns background execution; it need not make this optional analysis a synchronous prerequisite for other proof work. Copied sources and no-edit prompt instructions are not an OS sandbox; permissive adapters can access the host. A source or method change can make an old protocol result stale without erasing its historical artifacts.

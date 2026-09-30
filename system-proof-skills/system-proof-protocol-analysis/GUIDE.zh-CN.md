@@ -4,22 +4,32 @@
 
 分析由 agent 完成，不是确定性的语义判定器。观察、假说、候选义务和建议检查都是待审阅的证据，可能有误，也可能覆盖不全。质量取决于问题、提供的上下文、范围和实际执行；不承诺必然发现某个问题或带来改进，建议也不构成作出决策或执行操作的授权。
 
-## 对 system-proof 任务可能有什么帮助
+## 在 FM function analysis 与 protocol analysis 之间选择
 
-有用的输出是能够连接到系统目标、并有源码依据的前提或证明义务，而不只是更长的不变量列表。以下经验来自 HFS/OpenVMM 成对实验及后续审查，用于说明可能的用途，不是替新目标规定结论。适用性取决于问题结构，不取决于系统名称或 API 拼写。
+使用与 blocking question 匹配的最窄方法：
 
-| 证明任务中的需要 | 历史观察 | 可能的帮助与证据限制 |
+| Blocking question | 优先使用 | 边界 |
 | --- | --- | --- |
-| 将契约连接到实际使用它的位置 | HFS 协议分析把 resolver/validator 记录之间的关系和选定槽位见证描述得更具体 | 指出从 open 到 read 需要传递的关系、建立它的操作及中间修改操作。大部分缺口已在输入的证明记录中给出；这是细化，不是独立恢复规格。 |
-| 避免不必要或错误的全局不变量 | HFS 的整张映射恢复帧性质不需要全局身份唯一性。协议报告建议把未修改的旧内容视图等同于实际执行字节，这一建议被拒绝：空洞用例中两者分别为 512 和 1024 字节。 | 调查性质是否必要、是否需要限制适用域，或是否与证据冲突。不必要的加强在输入中已知；错误建议则说明报告自身不能判定正确性。 |
-| 找到局部证明与顶层主张之间缺失的连接 | OpenVMM 协议分析指出 `InitializedVm::load -> restore_snapshot_state` 两侧使用了不同的解码器／表示谓词 | 定位涉及 inventory 和 VP 数量的具体调用点桥接。进入函数后的运行时检查不能证明调用入口已要求的前置条件。这定位了证明义务，没有证明它。 |
-| 将生命周期假说变成区分性检查 | 沿着 FM 提出的假说，后续源码审查和独立的 HFS 原生测试发现：用一个句柄对另一个 volume 执行 close，可以在该 volume 的原句柄仍存活时释放其槽位 | 区分来源 volume／客户端使用约束与不受限制的 API 保证。两份原始分析报告都没有复现该轨迹；测试设计和执行属于独立的后续工作。测试构造的状态也没有证明 mount 可达性或全部 Verus 前提。 |
+| 一个 function 或选定 callee 对 direct caller 到底承诺什么？ | `analyze-function` | 一个 source span、contract variant、frame condition 和选定 child obligation |
+| 哪个 operation 建立 shared-state premise，哪些 transition 保持或破坏它，哪个 caller 使用它？ | `analyze-protocol` | 有界 operation/file 集合，以及明确 lifecycle 或 observation interval |
+| proposed global invariant 是否需要缩小 domain、phase 或 object set？ | `analyze-protocol` | candidate scope 和 counter-scenario，不是 invariant proof |
+| protocol report 是否已把问题缩小到一个 callee contract？ | 返回 `analyze-function` 或 direct proof | handoff 必须给出精确 caller fact 和剩余 authoritative check |
 
-协议分析在 HFS 上耗时 225.481 秒（部分完成），在 OpenVMM 上耗时 205.861 秒（结构完整）。这些是单次历史观察，不含输入准备和后续检查，不是延迟保证。独立的 HFS 原生运行通过了 25 个测试，其中四个是新增诊断；包含全新构建共耗时 13.12 秒。部分 OpenVMM 报告引用虽未超出文件行号范围，却指向了错误的定义，需要重新审查源码。
+不存在强制顺序，也不应默认两个工具都调用。FM analysis 可能暴露值得 protocol review 的 shared-state premise；protocol analysis 也可能把缺口定位到一个 function。工具切换由 active proof obligation 决定，而不是固定 pipeline。
 
-这些实验支持把工具用于可选的前提／证明义务审查，不支持声称它具有 FM 没有的独有能力、在同等范围下优于 FM、能够自主确认缺陷，或已经完成新的证明。协议分析获得的源码范围比函数基线更广，已有发现也作为上下文提供了。判断新颖性时应保留这些区别。
+## 对 Action 1 的贡献
 
-宿主仓库中的 `experiments/protocol-analysis/REPORT.md`、`experiments/protocol-analysis/results.json` 和 `experiments/protocol-analysis/hfs-lifecycle.tests.rs` 保留了相关证据。它们是历史记录，不是当前方法的执行凭据；独立的 Specula checkout 不包含这些文件。
+有用的 protocol output 可以：
+
+- 提出语义上真正不同的 lifecycle/invariant candidate，包括更弱的 observable relation；
+- 识别缺失的 establisher、未检查 writer、cancellation/error transition 或 caller compensation；
+- 把 proposed global property 分类为 candidate、需要限制、goal 不需要，或被 bounded source evidence 挑战；
+- 把 local contract 连接到建立和消费它的 operation/caller；
+- 给出能够区分 candidate 的具体 sequence、source audit、component test、implementation proof 或 model check。
+
+这些只是 specification attack 和 reasoning 的输入，不是 adequacy oracle。report 可能重复输入 context、引用错误 definition、遗漏 scope 外 writer，或建议错误加强。调用 agent 必须区分 prior finding 与 new deduction，并在改变 authoritative status 前取得独立 evidence。
+
+真实系统运行只提供 compatibility 和 information-value evidence。其 finding、runtime 和项目专有名称不得变成默认 prompt rule，也不能证明它优于 FM-Agent。
 
 ## 请求字段与范围
 
@@ -45,7 +55,7 @@
 | 命令 | 参数与行为 |
 | --- | --- |
 | `prepare` | 请求文件，以及必填的 `--source` 和 `--out`；可选 `--specula-root`。捕获输入／方法标识，不调用模型。输出目录必须是新目录。 |
-| `run` | 已准备的目录，以及必填的正整数 `--timeout`，单位为秒。可选 `--agent` 指定 `copilot-cli`（默认）、`codex` 或 `claude-code`；可选 `--model` 和 `--effort`，未指定时保留后端默认配置。 |
+| `run` | 已准备的目录，以及必填的正整数 `--timeout`，单位为秒。native system-proof adapter 使用已认证的 `copilot-cli`；可选 `model` 和 `effort` override，未指定时保留 Copilot CLI default。standalone Specula 仍保留其他 adapter。 |
 | `status` | 运行目录；检查保留的结果及其新鲜度，不重新执行分析 |
 
 每次新的尝试都需要新的运行目录；工具本身不负责任务调度或重试。超时会终止本次调用的进程组，并保留部分产物。先保留执行结果和覆盖缺口，再判断是否值得进行另一次限定范围的尝试。源码或方法变化后，历史状态可能仍显示完成，但 `current` 会变为 false；应同时检查两个字段。
@@ -82,6 +92,6 @@
 
 ## 运行边界
 
-执行需要 Git、Bash、Python、配置好的 coding-agent 后端，以及包含限定范围分析方法的干净、固定版本的 Specula checkout。如果未自动找到该 checkout，使用 `SPECULA_ROOT` 或 `--specula-root` 指定。后端／模型配置由显式参数指定或从现有配置继承，不由本文固定。
+执行需要 Git、Bash、Python、已认证的 Copilot CLI，以及包含 bounded method 的干净、固定版本 Specula checkout。native system-proof adapter 自动解析 relocated submodule，不要求 `SPECULA_ROOT`、API key、MCP setup 或其他 provider。standalone invocation 仍可使用 `SPECULA_ROOT`、`--specula-root` 和 Specula 文档记录的其他 adapter。
 
 协议分析不需要 TLA 生成、TLC 或 Verus。后台执行由调用者负责；不必把这项可选分析作为其他证明工作的同步前置条件。源码副本和提示中的禁止修改指令不是操作系统沙箱；使用宽松权限的适配器可以访问宿主环境。源码或方法变化可能使旧协议分析结果过期，但不会抹去其历史产物。

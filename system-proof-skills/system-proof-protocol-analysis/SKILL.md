@@ -7,6 +7,10 @@ description: "Use analyze-protocol when a system-proof task needs a cross-operat
 
 The tool itself runs an agent. Its observations, hypotheses and candidate obligations/checks are analysis evidence for review, not decisions, verified facts or guaranteed discoveries.
 
+The native system-proof adapter uses the authenticated Copilot CLI and the pinned Specula submodule automatically. It does not require API keys, MCP setup, TLA generation or `specula setup`. Do not enter the full Specula pipeline unless a separate mission explicitly requests modeling or model checking.
+
+Use `analyze-function` instead when one direct caller is blocked on one function or selected callee. Use `analyze-protocol` when the needed premise spans multiple operations, writers, lifecycle phases, callbacks or compensating failure paths. Neither tool is mandatory before the other.
+
 ## When to use
 
 Consider this optional analysis when the current system goal raises one of these questions:
@@ -37,7 +41,14 @@ Create `request.json`, replacing the placeholders with the actual goal and sourc
 }
 ```
 
-Prepare a new run directory, run only after preparation succeeds, then inspect the result even if the run exits nonzero:
+Inside a campaign, save the request as a project-relative file and use the native catalog adapter:
+
+```sh
+system-proof --root /path/to/project tools run analyze-protocol \
+  --request protocol-request.json --backend native
+```
+
+For standalone reproduction, prepare a new run directory, run only after preparation succeeds, then inspect the result even if the run exits nonzero:
 
 ```sh
 analyze-protocol prepare request.json --source /path/to/project --out /path/to/new-run \

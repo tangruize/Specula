@@ -7,6 +7,10 @@ description: "当 system-proof 任务需要审查跨操作前提、不变量的�
 
 工具自身也是由 agent 执行分析。它的观察、假说和候选义务／检查是供审阅的分析证据，不是决策、已验证事实或必然发现。
 
+native system-proof adapter 自动使用已认证的 Copilot CLI 和 pinned Specula submodule，不要求 API key、MCP setup、TLA generation 或 `specula setup`。除非独立 mission 明确要求 modeling/model checking，否则不要进入完整 Specula pipeline。
+
+一个 direct caller 被一个 function 或选定 callee 阻塞时使用 `analyze-function`；所需 premise 跨多个 operation、writer、lifecycle phase、callback 或 compensating failure path 时使用 `analyze-protocol`。二者不存在强制先后关系。
+
 ## 什么情况下使用
 
 当前系统目标涉及以下问题时，可以考虑这项可选分析：
@@ -37,7 +41,14 @@ description: "当 system-proof 任务需要审查跨操作前提、不变量的�
 }
 ```
 
-准备新的运行目录，只在准备成功后执行分析；即使分析返回非零退出码，也应查看结果：
+campaign 内把 request 保存为 project-relative file，并使用 native catalog adapter：
+
+```sh
+system-proof --root /path/to/project tools run analyze-protocol \
+  --request protocol-request.json --backend native
+```
+
+standalone reproduction 时准备新的运行目录，只在准备成功后执行分析；即使分析返回非零退出码，也应查看结果：
 
 ```sh
 analyze-protocol prepare request.json --source /path/to/project --out /path/to/new-run \
