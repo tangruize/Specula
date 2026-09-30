@@ -17,7 +17,7 @@
 
 不存在强制顺序，也不应默认两个工具都调用。FM analysis 可能暴露值得 protocol review 的 shared-state premise；protocol analysis 也可能把缺口定位到一个 function。工具切换由 active proof obligation 决定，而不是固定 pipeline。
 
-## 对 Action 1 的贡献
+## 对规格判断的贡献
 
 有用的 protocol output 可以：
 

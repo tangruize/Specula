@@ -17,7 +17,7 @@ Use the narrowest method that matches the blocking question:
 
 There is no mandatory order and no reason to invoke both tools by default. FM analysis may expose a shared-state premise that deserves protocol review; protocol analysis may localize a gap to one function. Tool transitions are justified by the active proof obligation, not by a fixed pipeline.
 
-## Contributions to Action 1
+## Contributions to specification judgment
 
 Useful protocol output can:
 
