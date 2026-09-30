@@ -16,11 +16,11 @@ The tool itself runs an agent. Its observations, hypotheses and candidate obliga
 Consider this optional analysis when the current system goal raises one of these questions:
 
 - A contract relies on shared state across operations: which constructor, owner or earlier call establishes the premise, and which intervening operations preserve or invalidate it?
-- A candidate invariant seems too strong or has counterexamples: does this caller need it globally, only for a selected object or phase, or not at all?
+- An invariant's role or scope is unclear: what property does the caller need, over which objects and phases, and what evidence supports or challenges it?
 - Local proofs exist but the top-level claim remains disconnected: which concrete caller-to-callee representation or precondition bridge is still missing?
-- A suspected failure spans open/close, save/restore, callbacks or error paths: what source-supported sequence and cheap discriminating check could distinguish a real violation from a permitted effect or caller compensation?
+- A suspected violation depends on operation ordering, state transitions or failure handling: what source-supported sequence and cheap discriminating check could distinguish a real violation from a permitted effect or caller compensation?
 
-These triggers come from the HFS/OpenVMM investigations, not a guarantee of a new finding. This is not a compiler, prover or bug-confirmation runner, and it is not required on every proof iteration or after FM analysis. The calling agent chooses whether the question warrants a bounded, potentially multi-minute investigation.
+These are general question patterns, not system-specific requirements or a guarantee of a new finding. This is not a compiler, prover or bug-confirmation runner, and it is not required on every proof iteration or in a fixed order with other analysis tools. The calling agent chooses whether the question warrants a bounded, potentially multi-minute investigation.
 
 ## Before invoking
 
@@ -33,11 +33,11 @@ Create `request.json`, replacing the placeholders with the actual goal and sourc
 ```json
 {
   "goal": "THE EXACT ORIGINAL CAMPAIGN GOAL",
-  "target": {"symbol": "Registry::restore", "file": "src/registry.rs", "line": 42},
-  "direct_caller": "Service::load",
-  "observation_boundary": "Entry to restore through return to load, including errors",
+  "target": {"symbol": "Component::apply", "file": "src/component.rs", "line": 42},
+  "direct_caller": "Service::execute",
+  "observation_boundary": "Entry to apply through return to execute, including errors",
   "assumptions": [],
-  "scope": {"paths": ["src/registry.rs", "src/service.rs"]}
+  "scope": {"paths": ["src/component.rs", "src/service.rs"]}
 }
 ```
 

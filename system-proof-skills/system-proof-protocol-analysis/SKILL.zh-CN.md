@@ -16,11 +16,11 @@ description: "当 system-proof 任务需要审查跨操作前提、不变量的�
 当前系统目标涉及以下问题时，可以考虑这项可选分析：
 
 - 契约依赖跨操作的共享状态：哪个构造过程、所有者或先前调用建立了前提，哪些中间操作保持或使它失效？
-- 候选不变量显得过强或已有反例：当前调用者需要它全局成立、只对选定对象或阶段成立，还是根本不需要它？
+- 不变量的作用或范围不清楚：调用者究竟需要什么性质，适用于哪些对象与阶段，哪些证据支持或反驳它？
 - 已有局部证明，但尚未连接到顶层主张：具体缺少哪个调用者到被调用者的表示关系或前置条件桥接？
-- 疑似失败跨越 open/close、save/restore、回调或错误路径：哪些有源码依据的操作序列和低成本区分性检查，可以区分真正的违反、允许的效果和调用者补偿？
+- 疑似违反依赖操作顺序、状态转移或失败处理：哪些有源码依据的操作序列和低成本区分性检查，可以区分真正的违反、允许的效果和调用者补偿？
 
-这些触发场景来自 HFS/OpenVMM 调查，不保证一定获得新发现。它不是编译器、证明器或缺陷确认执行器，也不要求每轮证明或 FM 分析之后都调用。是否值得进行一次有明确范围、可能耗时数分钟的调查，由调用 agent 决定。
+这些是通用的问题模式，不是特定系统的要求，也不保证一定获得新发现。它不是编译器、证明器或缺陷确认执行器，不要求每轮证明都调用，也不规定与其他分析工具的固定调用顺序。是否值得进行一次有明确范围、可能耗时数分钟的调查，由调用 agent 决定。
 
 ## 调用前准备
 
@@ -33,11 +33,11 @@ description: "当 system-proof 任务需要审查跨操作前提、不变量的�
 ```json
 {
   "goal": "THE EXACT ORIGINAL CAMPAIGN GOAL",
-  "target": {"symbol": "Registry::restore", "file": "src/registry.rs", "line": 42},
-  "direct_caller": "Service::load",
-  "observation_boundary": "Entry to restore through return to load, including errors",
+  "target": {"symbol": "Component::apply", "file": "src/component.rs", "line": 42},
+  "direct_caller": "Service::execute",
+  "observation_boundary": "Entry to apply through return to execute, including errors",
   "assumptions": [],
-  "scope": {"paths": ["src/registry.rs", "src/service.rs"]}
+  "scope": {"paths": ["src/component.rs", "src/service.rs"]}
 }
 ```
 

@@ -10,7 +10,7 @@ The analysis is performed by an agent, not a deterministic semantic oracle. Obse
 
 ## Possible contributions to a system-proof task
 
-The useful output is a source-linked premise or obligation that can be connected to the system goal, not simply a longer list of invariants. The following lessons come from the paired HFS/OpenVMM experiments and their follow-up review; they explain possible uses, not decisions prescribed for a new target.
+The useful output is a source-linked premise or obligation that can be connected to the system goal, not simply a longer list of invariants. The following lessons come from the paired HFS/OpenVMM experiments and their follow-up review; they explain possible uses, not decisions prescribed for a new target. Applicability depends on the question's structure, not system names or API spellings.
 
 | Need in the proof task | Historical observation | Possible contribution and evidence limit |
 | --- | --- | --- |
