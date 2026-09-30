@@ -6,36 +6,53 @@ This guide and [SKILL.md](SKILL.md) form a standalone caller-facing bundle. Copy
 
 `analyze-protocol` performs optional, bounded source analysis across operations and shared-state lifecycles. It produces source-linked candidate contracts, properties and proof obligations. It does not select the campaign's specification, establish proof progress, confirm bugs, or approve an implementation change. Tool choice, scope, interpretation and the next mission remain with the calling agent under the existing campaign contract. FM-Agent is a separate tool, not a mode or prerequisite of this one.
 
-## Inputs and invocation
+The analysis is performed by an agent, not a deterministic semantic oracle. Observations, hypotheses, candidate obligations and suggested checks are evidence to review, with possible mistakes and incomplete coverage. Their quality depends on the question, supplied context, scope and execution; no particular discovery or improvement is promised, and recommendations do not authorize a decision or action.
 
-Retain the original system goal, the caller needing the fact, the relevant observation boundary, and known assumptions or proof gaps. Existing annotations and reports are context, not automatically certified premises. Examples below use placeholder paths/symbols; substitute real source anchors and a budget appropriate to the invocation.
+## Possible contributions to a system-proof task
 
-The command is provided by the host's `argus-spec` package, not by Specula's standalone CLI. Its packaged `argus_spec/analysis_request.json` defines the request. A minimal file-scoped example is:
+The useful output is a source-linked premise or obligation that can be connected to the system goal, not simply a longer list of invariants. The following lessons come from the paired HFS/OpenVMM experiments and their follow-up review; they explain possible uses, not decisions prescribed for a new target.
 
-```json
-{
-  "goal": "THE EXACT ORIGINAL CAMPAIGN GOAL",
-  "target": {"symbol": "Registry::restore", "file": "src/registry.rs", "line": 42},
-  "direct_caller": "Service::load",
-  "observation_boundary": "Entry to restore through return to load, including errors",
-  "assumptions": [],
-  "scope": {"paths": ["src/registry.rs", "src/service.rs"]},
-  "context_files": ["research/current-frontier.md"]
-}
-```
+| Need in the proof task | Historical observation | Possible contribution and evidence limit |
+| --- | --- | --- |
+| Relate a contract to the actual consumer | HFS protocol analysis made the resolver/validator record relation and selected-slot witness more concrete | Name the relation needed from open to read, its establishing operation and intervening mutators. Much of the gap was already in the supplied frontier; this was refinement, not independent recovery of the specification. |
+| Avoid an unnecessary or false global invariant | HFS's whole-map restore frame did not require global identity uniqueness. A protocol recommendation to equate unchanged legacy content with operational bytes was rejected: the gap control gave 512 versus 1024 bytes. | Ask whether a property is needed, needs a restricted domain, or conflicts with evidence. The unnecessary strengthening was already known; the false recommendation shows that the report cannot decide correctness by itself. |
+| Find the missing connection from local proofs to the top-level claim | OpenVMM protocol analysis identified different decoder/representation predicates at `InitializedVm::load -> restore_snapshot_state` | Identify a concrete call-site bridge for inventory and VP count. A later runtime check cannot justify an entry precondition. This located a proof obligation; it did not prove it. |
+| Turn a lifecycle hypothesis into a discriminating check | Following an FM hypothesis, source review and separate native HFS tests showed that closing a handle against another volume can free a slot while that volume's original handle remains live | Distinguish an origin-volume/client discipline from an unrestricted API guarantee. Neither raw analysis report reproduced this trace; test design and execution were separate follow-up work. The fixtures did not prove mount reachability or all Verus premises. |
 
-All selected paths and anchors must exist. Context files are optional. Paths are source-root-relative; explicit files may be untracked, while directory expansion selects Git-tracked files. A file/line anchor does not certify that the named symbol is at that location.
+The protocol runs took 225.481 seconds for HFS (partial) and 205.861 seconds for OpenVMM (structurally completed). These are single historical observations, excluding intake and follow-up checks, not latency guarantees. The separate HFS native run passed 25 tests, including four new diagnostics, in 13.12 seconds including a fresh build. Some OpenVMM report citations were in range but pointed to the wrong definitions, requiring source review.
 
-```sh
-analyze-protocol prepare request.json --source /path/to/project --out /path/to/new-run \
-  --specula-root /path/to/Specula
-analyze-protocol run /path/to/new-run --timeout 600
-analyze-protocol status /path/to/new-run
-```
+These experiments support an optional premise/obligation review, not a unique ability unavailable to FM, superiority at equal scope, autonomous bug confirmation or newly completed proofs. The protocol runs had broader source access than the function baseline; existing findings were supplied as context. Preserve that distinction when assessing novelty.
 
-`prepare` captures inputs and method identity without calling the model. `run` performs analysis only, with an explicit seconds-based timeout. `status` checks retained results and freshness without rerunning analysis. Each new attempt needs a new run directory; the tool does not schedule or retry runs.
+The host repository retains the evidence in `experiments/protocol-analysis/REPORT.md`, `experiments/protocol-analysis/results.json` and `experiments/protocol-analysis/hfs-lifecycle.tests.rs`. These are historical records, not current-method receipts; they are not bundled with a standalone Specula checkout.
 
-Alternatively, `scope.call_graph` accepts `functions`, `calls`, `unresolved`, `roots`, `direction` and `max_depth`; the first three arrays use `proof_map.navigation` records. It selects whole files containing reached functions and retains unresolved/cross-boundary edges. It neither discovers a complete graph nor proves that all relevant writers are included.
+## Request fields and scope
+
+The minimal request and invocation are in [SKILL.md](SKILL.md). The command is provided by the host's `argus-spec` package, not Specula's standalone CLI. Its packaged `argus_spec/analysis_request.json` defines the exact request:
+
+| Field | Requirement and meaning |
+| --- | --- |
+| `goal` | Required; preserve the exact original campaign goal |
+| `target` | Required object with `symbol`, `file`, `line`; use an existing source file and an in-range, one-based line |
+| `direct_caller` | Required; the immediate caller needing the result |
+| `observation_boundary` | Required; the point or interval at which the promised behavior is evaluated, including relevant failures |
+| `assumptions` | Required array; use an empty array if none are supplied |
+| `scope` | Required; choose exactly one of `paths` or `call_graph` |
+| `context_files` | Optional source-relative files containing the focused question, prior findings, candidate contracts or proof gaps; these are context, not certified premises |
+| `history_limit` | Optional nonnegative integer, default zero; captures at most this many scoped commit messages, not full diffs or remote issue history |
+
+All selected paths and anchors must exist. Paths are source-root-relative; explicit files may be untracked, while directory expansion selects Git-tracked files. A file/line anchor does not certify that the named symbol is at that location.
+
+`scope.call_graph` accepts `functions`, `calls`, `unresolved`, `roots`, `direction` and `max_depth`; the first three arrays use `proof_map.navigation` records. Roots are function IDs; direction is `callees`, `callers` or `both`; depth is a nonnegative integer or `null` for unrestricted reachability. It selects whole files containing reached functions and retains unresolved/cross-boundary edges. It neither discovers a complete graph nor proves that all relevant writers are included.
+
+## Execution options and incomplete runs
+
+| Command | Parameters and behavior |
+| --- | --- |
+| `prepare` | Request file plus required `--source` and `--out`; optional `--specula-root`. Captures input/method identity without calling the model. The output directory must be new. |
+| `run` | Prepared directory and required positive-integer `--timeout` in seconds. Optional `--agent` selects `copilot-cli` (default), `codex` or `claude-code`; optional `--model` and `--effort` otherwise retain backend defaults. |
+| `status` | Run directory; inspects retained results and freshness without rerunning analysis |
+
+Each new attempt needs a new run directory; the tool does not schedule or retry runs. Timeout terminates the invocation's process group and retains partial artifacts. Preserve the outcome and missing coverage before deciding whether another bounded attempt is useful. A source or method change can leave the historical status as completed while `current` becomes false; inspect both fields.
 
 Native campaign integration is owned by the host framework: it must bind the exact original goal, authorize source roots, apply action/time budgets and register advisory receipts. Standalone invocations do not automatically register campaign receipts. A host's catalog or dummy response is not evidence that analysis ran; retain the actual backend outcome and artifacts when integrating.
 

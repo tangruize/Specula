@@ -6,36 +6,53 @@
 
 `analyze-protocol` 对跨操作和共享状态生命周期进行可选、有明确范围的源码分析，产出关联源码的候选契约、性质和证明义务。它不选定验证任务（campaign）的规格，不确认证明进展，不确认缺陷，也不批准实现变更。工具选择、范围、结果解释和下一项任务，仍由调用 agent 按现有验证任务约定决定。FM-Agent 是独立工具，不是本工具的一种模式或前置要求。
 
-## 输入与调用
+分析由 agent 完成，不是确定性的语义判定器。观察、假说、候选义务和建议检查都是待审阅的证据，可能有误，也可能覆盖不全。质量取决于问题、提供的上下文、范围和实际执行；不承诺必然发现某个问题或带来改进，建议也不构成作出决策或执行操作的授权。
 
-保留原始系统目标、需要相关事实的调用者、相关观察边界，以及已知假设或证明缺口。已有注解和报告只是上下文，不会自动成为已获认证的前提。以下示例使用占位路径和符号；请替换为真实的源码定位，并设置适合本次调用的预算。
+## 对 system-proof 任务可能有什么帮助
 
-命令由宿主的 `argus-spec` 包提供，而不是由 Specula 的独立 CLI 提供。该包中的 `argus_spec/analysis_request.json` 定义请求格式。下面是一个按文件限定范围的最小示例：
+有用的输出是能够连接到系统目标、并有源码依据的前提或证明义务，而不只是更长的不变量列表。以下经验来自 HFS/OpenVMM 成对实验及后续审查，用于说明可能的用途，不是替新目标规定结论。
 
-```json
-{
-  "goal": "THE EXACT ORIGINAL CAMPAIGN GOAL",
-  "target": {"symbol": "Registry::restore", "file": "src/registry.rs", "line": 42},
-  "direct_caller": "Service::load",
-  "observation_boundary": "Entry to restore through return to load, including errors",
-  "assumptions": [],
-  "scope": {"paths": ["src/registry.rs", "src/service.rs"]},
-  "context_files": ["research/current-frontier.md"]
-}
-```
+| 证明任务中的需要 | 历史观察 | 可能的帮助与证据限制 |
+| --- | --- | --- |
+| 将契约连接到实际使用它的位置 | HFS 协议分析把 resolver/validator 记录之间的关系和选定槽位见证描述得更具体 | 指出从 open 到 read 需要传递的关系、建立它的操作及中间修改操作。大部分缺口已在输入的证明记录中给出；这是细化，不是独立恢复规格。 |
+| 避免不必要或错误的全局不变量 | HFS 的整张映射恢复帧性质不需要全局身份唯一性。协议报告建议把未修改的旧内容视图等同于实际执行字节，这一建议被拒绝：空洞用例中两者分别为 512 和 1024 字节。 | 调查性质是否必要、是否需要限制适用域，或是否与证据冲突。不必要的加强在输入中已知；错误建议则说明报告自身不能判定正确性。 |
+| 找到局部证明与顶层主张之间缺失的连接 | OpenVMM 协议分析指出 `InitializedVm::load -> restore_snapshot_state` 两侧使用了不同的解码器／表示谓词 | 定位涉及 inventory 和 VP 数量的具体调用点桥接。进入函数后的运行时检查不能证明调用入口已要求的前置条件。这定位了证明义务，没有证明它。 |
+| 将生命周期假说变成区分性检查 | 沿着 FM 提出的假说，后续源码审查和独立的 HFS 原生测试发现：用一个句柄对另一个 volume 执行 close，可以在该 volume 的原句柄仍存活时释放其槽位 | 区分来源 volume／客户端使用约束与不受限制的 API 保证。两份原始分析报告都没有复现该轨迹；测试设计和执行属于独立的后续工作。测试构造的状态也没有证明 mount 可达性或全部 Verus 前提。 |
 
-所有选定路径和源码定位都必须存在。上下文文件是可选的。路径相对于源码根目录；显式指定的文件可以未被 Git 跟踪，而目录展开只选择 Git 跟踪的文件。文件／行号定位不能证明所写符号确实位于该位置。
+协议分析在 HFS 上耗时 225.481 秒（部分完成），在 OpenVMM 上耗时 205.861 秒（结构完整）。这些是单次历史观察，不含输入准备和后续检查，不是延迟保证。独立的 HFS 原生运行通过了 25 个测试，其中四个是新增诊断；包含全新构建共耗时 13.12 秒。部分 OpenVMM 报告引用虽未超出文件行号范围，却指向了错误的定义，需要重新审查源码。
 
-```sh
-analyze-protocol prepare request.json --source /path/to/project --out /path/to/new-run \
-  --specula-root /path/to/Specula
-analyze-protocol run /path/to/new-run --timeout 600
-analyze-protocol status /path/to/new-run
-```
+这些实验支持把工具用于可选的前提／证明义务审查，不支持声称它具有 FM 没有的独有能力、在同等范围下优于 FM、能够自主确认缺陷，或已经完成新的证明。协议分析获得的源码范围比函数基线更广，已有发现也作为上下文提供了。判断新颖性时应保留这些区别。
 
-`prepare` 捕获输入和方法标识，不调用模型。`run` 只执行分析，必须显式设置以秒为单位的超时。`status` 检查保留的结果及其新鲜度，不重新执行分析。每次新的尝试都需要新的运行目录；工具本身不负责任务调度或重试。
+宿主仓库中的 `experiments/protocol-analysis/REPORT.md`、`experiments/protocol-analysis/results.json` 和 `experiments/protocol-analysis/hfs-lifecycle.tests.rs` 保留了相关证据。它们是历史记录，不是当前方法的执行凭据；独立的 Specula checkout 不包含这些文件。
 
-也可以使用 `scope.call_graph`，其中包含 `functions`、`calls`、`unresolved`、`roots`、`direction` 和 `max_depth`；前三个数组采用 `proof_map.navigation` 的记录格式。工具会选取包含可达函数的整个文件，并保留未解析的边和跨边界的边。它既不会发现完整调用图，也不证明所有相关写入操作都已纳入范围。
+## 请求字段与范围
+
+最小请求和调用示例见 [SKILL.zh-CN.md](SKILL.zh-CN.md)。命令由宿主的 `argus-spec` 包提供，而不是由 Specula 的独立 CLI 提供。该包中的 `argus_spec/analysis_request.json` 定义准确的请求格式：
+
+| 字段 | 要求与含义 |
+| --- | --- |
+| `goal` | 必填；保留完全一致的原始验证任务目标 |
+| `target` | 必填对象，包含 `symbol`、`file`、`line`；使用真实源码文件及范围内、从一开始计数的行号 |
+| `direct_caller` | 必填；需要该结果的直接调用者 |
+| `observation_boundary` | 必填；评价承诺行为的时点或区间，包括相关失败情况 |
+| `assumptions` | 必填数组；没有提供假设时使用空数组 |
+| `scope` | 必填；在 `paths` 和 `call_graph` 中恰好选择一种 |
+| `context_files` | 可选的相对源码根目录的文件，可包含聚焦问题、已有发现、候选契约或证明缺口；它们是上下文，不是已认证前提 |
+| `history_limit` | 可选非负整数，默认零；最多捕获该数量的范围内提交消息，不含完整 diff 或远程 issue 历史 |
+
+所有选定路径和源码定位都必须存在。路径相对于源码根目录；显式指定的文件可以未被 Git 跟踪，而目录展开只选择 Git 跟踪的文件。文件／行号定位不能证明所写符号确实位于该位置。
+
+`scope.call_graph` 包含 `functions`、`calls`、`unresolved`、`roots`、`direction` 和 `max_depth`；前三个数组采用 `proof_map.navigation` 的记录格式。根节点使用函数 ID；方向为 `callees`、`callers` 或 `both`；深度为非负整数，或用 `null` 表示不限制可达深度。工具会选取包含可达函数的整个文件，并保留未解析的边和跨边界的边。它既不会发现完整调用图，也不证明所有相关写入操作都已纳入范围。
+
+## 执行参数与未完成的运行
+
+| 命令 | 参数与行为 |
+| --- | --- |
+| `prepare` | 请求文件，以及必填的 `--source` 和 `--out`；可选 `--specula-root`。捕获输入／方法标识，不调用模型。输出目录必须是新目录。 |
+| `run` | 已准备的目录，以及必填的正整数 `--timeout`，单位为秒。可选 `--agent` 指定 `copilot-cli`（默认）、`codex` 或 `claude-code`；可选 `--model` 和 `--effort`，未指定时保留后端默认配置。 |
+| `status` | 运行目录；检查保留的结果及其新鲜度，不重新执行分析 |
+
+每次新的尝试都需要新的运行目录；工具本身不负责任务调度或重试。超时会终止本次调用的进程组，并保留部分产物。先保留执行结果和覆盖缺口，再判断是否值得进行另一次限定范围的尝试。源码或方法变化后，历史状态可能仍显示完成，但 `current` 会变为 false；应同时检查两个字段。
 
 原生验证任务集成由宿主框架负责：必须绑定完全一致的原始目标，授权源码根目录，应用操作次数／时间预算，并注册建议性执行记录。独立调用不会自动注册验证任务的执行记录。宿主的工具目录条目或占位响应（dummy）不是分析已经运行的证据；集成时应保留实际后端的执行结果和产物。
 
