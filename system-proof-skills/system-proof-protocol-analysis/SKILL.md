@@ -5,10 +5,6 @@ description: "Use analyze-protocol when a system-proof task needs a cross-operat
 
 # Goal-scoped protocol analysis
 
-For Human review, see the [Simplified Chinese version](SKILL.zh-CN.md). It describes the same skill, not a separate skill registration.
-
-This is a caller-facing integration skill, not the analysis worker's runtime method. Keep this directory together when copying the bundle; it is not automatically installed into the main agent. [GUIDE.md](GUIDE.md) contains experiment-derived examples, detailed parameters, artifacts and terminology.
-
 The tool itself runs an agent. Its observations, hypotheses and candidate obligations/checks are analysis evidence for review, not decisions, verified facts or guaranteed discoveries.
 
 ## When to use
@@ -59,3 +55,5 @@ Inspect both `status` and `current`, not just the exit code. A current `complete
 Retain the run directory, source/method identity, coverage and unresolved boundaries. If available, read `report.json` and hand off relevant findings with their premises, source citations, consuming caller, dependencies, proposed check and remaining proof. Otherwise retain the status and available logs/raw output. Suggested tests and proofs are not execution evidence; any follow-up check needs its own record.
 
 The calling agent decides whether to invoke the tool, adopt or reject a candidate, change scope or implementation, or choose the next obligation. Neither this skill nor the report selects the final specification, closes proof-map obligations, repays trust/change debt, or certifies a bug.
+
+See [GUIDE.md](GUIDE.md) for detailed parameters, output artifacts, terminology and historical evidence.

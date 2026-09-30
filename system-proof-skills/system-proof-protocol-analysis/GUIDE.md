@@ -1,10 +1,6 @@
 # Protocol analysis for goal-driven system proof
 
-[Simplified Chinese review version](GUIDE.zh-CN.md).
-
-This guide and [SKILL.md](SKILL.md) form a standalone caller-facing bundle. Copy or load this directory when integrating the tool; merely keeping it here does not install it into the main agent. The runtime method remains in the pinned Specula checkout at `skills/protocol_analysis/references/scoped-analysis.md`; the bundle does not replace that method or provide the executable.
-
-`analyze-protocol` performs optional, bounded source analysis across operations and shared-state lifecycles. It produces source-linked candidate contracts, properties and proof obligations. It does not select the campaign's specification, establish proof progress, confirm bugs, or approve an implementation change. Tool choice, scope, interpretation and the next mission remain with the calling agent under the existing campaign contract. FM-Agent is a separate tool, not a mode or prerequisite of this one.
+`analyze-protocol` performs optional, bounded source analysis across operations and shared-state lifecycles. It produces source-linked candidate contracts, properties and proof obligations. It does not select the campaign's specification, establish proof progress, confirm bugs, or approve an implementation change. Tool choice, scope, interpretation and the next mission remain with the calling agent under the existing campaign contract.
 
 The analysis is performed by an agent, not a deterministic semantic oracle. Observations, hypotheses, candidate obligations and suggested checks are evidence to review, with possible mistakes and incomplete coverage. Their quality depends on the question, supplied context, scope and execution; no particular discovery or improvement is promised, and recommendations do not authorize a decision or action.
 
@@ -86,6 +82,6 @@ Coverage and citations are structurally checked, but whether a cited line suppor
 
 ## Runtime boundary
 
-The command is installed by `argus-spec`. It needs Git, Bash, Python and a configured coding-agent backend. Initialize the host repository's pinned `specula` submodule, or supply a clean checkout of `tangruize/Specula` containing the bounded method. Installed wheels need `SPECULA_ROOT` or `--specula-root`. Backend/model configuration remains explicit or inherited, not fixed by this document.
+Execution requires Git, Bash, Python, a configured coding-agent backend and a clean, pinned Specula checkout containing the bounded method. If the checkout is not automatically discovered, specify it with `SPECULA_ROOT` or `--specula-root`. Backend/model configuration remains explicit or inherited, not fixed by this document.
 
-Protocol analysis needs no full `specula setup`, TLA generation, TLC or Verus setup. The caller owns background execution; it need not make this optional analysis a synchronous prerequisite for other proof work. Copied sources and no-edit prompt instructions are not an OS sandbox; permissive adapters can access the host. A source or method change can make an old protocol result stale without erasing its historical artifacts.
+Protocol analysis does not require TLA generation, TLC or Verus. The caller owns background execution; it need not make this optional analysis a synchronous prerequisite for other proof work. Copied sources and no-edit prompt instructions are not an OS sandbox; permissive adapters can access the host. A source or method change can make an old protocol result stale without erasing its historical artifacts.
